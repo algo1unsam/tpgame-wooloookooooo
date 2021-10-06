@@ -8,8 +8,8 @@ program NaveGame {
 	game.title("Field Combat")
 	game.height(20)
 	game.width(20)
-	game.cellSize(50)
-	game.ground("piso.png")
+	//game.cellSize(50)
+	game.boardGround("fondoluna.png")
 	
 //	VISUALES
 	game.addVisual(nave)
