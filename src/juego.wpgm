@@ -1,10 +1,11 @@
 import wollok.game.*
 import personajes.*
+import movimientos.*
 
-program PepitaGame {
+program NaveGame {
 	
 //	CONFIG	
-	game.title("Battle City")
+	game.title("Field Combat")
 	game.height(20)
 	game.width(20)
 	game.cellSize(50)
@@ -14,11 +15,12 @@ program PepitaGame {
 	game.addVisual(nave)
 	
 //	TECLADO
-	keyboard.up().onPressDo { nave.mover(arriba) }
-	keyboard.down().onPressDo { nave.mover(abajo) }
-	keyboard.left().onPressDo { nave.mover(izquierda) }
-	keyboard.right().onPressDo { nave.mover(derecha) }
+	keyboard.up().onPressDo { nave.moverseA(arriba) }
+	keyboard.down().onPressDo { nave.moverseA(abajo) }
+	keyboard.left().onPressDo { nave.moverseA(izquierda) }
+	keyboard.right().onPressDo { nave.moverseA(derecha) }
 	
+	//pepita.move(pepita.position().up(1))
 //	START
 	game.start()
 }
