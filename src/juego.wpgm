@@ -1,8 +1,24 @@
 import wollok.game.*
-import pepita.*
+import personajes.*
 
-program juego {
-	game.title("Juego Base")
-	game.addVisual(pepita)
+program PepitaGame {
+	
+//	CONFIG	
+	game.title("Battle City")
+	game.height(20)
+	game.width(20)
+	game.cellSize(50)
+	game.ground("piso.png")
+	
+//	VISUALES
+	game.addVisual(nave)
+	
+//	TECLADO
+	keyboard.up().onPressDo { nave.mover(arriba) }
+	keyboard.down().onPressDo { nave.mover(abajo) }
+	keyboard.left().onPressDo { nave.mover(izquierda) }
+	keyboard.right().onPressDo { nave.mover(derecha) }
+	
+//	START
 	game.start()
 }
