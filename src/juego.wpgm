@@ -5,7 +5,7 @@ import movimientos.*
 program NaveGame {
 	
 //	CONFIG	
-	game.title("Field Combat")
+	game.title("UFO Rescue")
 	game.height(20)
 	game.width(20)
 	//game.cellSize(50)

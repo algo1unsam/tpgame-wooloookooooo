@@ -6,7 +6,7 @@ import personajes.*
 object arriba {
 	//Corregir tamaño escenario para arreglar limite -2	
 	method mover(){
-		if (nave.position().y() < game.height()-2 ) {
+		if (nave.position().y() < game.height()-2) {
 			
 			return nave.position().up(1)
 		}
@@ -20,7 +20,7 @@ object arriba {
 object abajo{
 	
 	method mover(){
-		if (nave.position().y() > 0 ) {
+		if (nave.position().y() > (game.height()/2) ) {
 			
 			return nave.position().down(1)
 		}
@@ -34,7 +34,7 @@ object abajo{
 object derecha{
 	//Corregir tamaño escenario para arreglar limite -3
 	method mover(){
-		if (nave.position().x() <= game.width()-3 ) {
+		if (nave.position().x() <= game.width()-4) {
 			
 			return nave.position().right(1)
 		}
@@ -48,7 +48,7 @@ object derecha{
 object izquierda{
 	
 	method mover(){
-		if (nave.position().x() > 0 ) {
+		if (nave.position().x() >= 0 ) {
 			return nave.position().left(1)
 		}
 		else {
