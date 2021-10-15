@@ -1,8 +1,8 @@
 import wollok.game.*
 
 
-object nave {
-	var property position = game.center() //ver donde empezar
+object ovni {
+	var property position = game.center() 
 	var property image = "ovni.png"
 	
 	method moverseA(direccion) {
@@ -12,3 +12,12 @@ object nave {
 
 }
 
+object alien {
+	var property position = game.at(10,5)//ver donde empezar
+	var property image = "aliens.png"	
+}
+
+object nave {
+	var property position = game.at(1,15)//ver donde empezar
+	var property image = "naveterrestre.png"	
+}

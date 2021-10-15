@@ -2,23 +2,25 @@ import wollok.game.*
 import personajes.*
 import movimientos.*
 
+
 program NaveGame {
 	
 //	CONFIG	
 	game.title("UFO Rescue")
 	game.height(20)
-	game.width(20)
+	game.width(25)
 	//game.cellSize(50)
 	game.boardGround("fondoluna.png")
 	
 //	VISUALES
+	game.addVisual(ovni)
+	game.addVisual(alien)
 	game.addVisual(nave)
-	
 //	TECLADO
-	keyboard.up().onPressDo { nave.moverseA(arriba) }
-	keyboard.down().onPressDo { nave.moverseA(abajo) }
-	keyboard.left().onPressDo { nave.moverseA(izquierda) }
-	keyboard.right().onPressDo { nave.moverseA(derecha) }
+	keyboard.up().onPressDo { ovni.moverseA(arriba) }
+	keyboard.down().onPressDo { ovni.moverseA(abajo) }
+	keyboard.left().onPressDo { ovni.moverseA(izquierda) }
+	keyboard.right().onPressDo { ovni.moverseA(derecha) }
 	
 //	SONIDO
 	const music = game.sound("ufoInvasion.mp3")

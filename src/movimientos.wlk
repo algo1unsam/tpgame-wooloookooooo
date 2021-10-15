@@ -6,12 +6,12 @@ import personajes.*
 object arriba {
 	//Corregir tamaño escenario para arreglar limite -2	
 	method mover(){
-		if (nave.position().y() < game.height()-2) {
+		if (ovni.position().y() < game.height()-2) {
 			
-			return nave.position().up(1)
+			return ovni.position().up(1)
 		}
 		else {
-			return nave.position()
+			return ovni.position()
 		}
 	}
 		
@@ -20,12 +20,12 @@ object arriba {
 object abajo{
 	
 	method mover(){
-		if (nave.position().y() > (game.height()/2) ) {
+		if (ovni.position().y() > (game.height()/2) ) {
 			
-			return nave.position().down(1)
+			return ovni.position().down(1)
 		}
 		else {
-			return nave.position()
+			return ovni.position()
 		}
 	}
 		
@@ -34,12 +34,12 @@ object abajo{
 object derecha{
 	//Corregir tamaño escenario para arreglar limite -3
 	method mover(){
-		if (nave.position().x() <= game.width()-4) {
+		if (ovni.position().x() <= game.width()-4) {
 			
-			return nave.position().right(1)
+			return ovni.position().right(1)
 		}
 		else {
-			return nave.position()
+			return ovni.position()
 		}
 	}
 	
@@ -48,11 +48,11 @@ object derecha{
 object izquierda{
 	
 	method mover(){
-		if (nave.position().x() >= 0 ) {
-			return nave.position().left(1)
+		if (ovni.position().x() >= 0 ) {
+			return ovni.position().left(1)
 		}
 		else {
-			return nave.position()
+			return ovni.position()
 		}
 	}
 }
