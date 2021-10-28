@@ -2,57 +2,25 @@ import wollok.game.*
 
 import personajes.*
 
-
 object arriba {
-	//Corregir tamaño escenario para arreglar limite -2	
-	method mover(){
-		if (ovni.position().y() < game.height()-2) {
-			
-			return ovni.position().up(1)
-		}
-		else {
-			return ovni.position()
-		}
-	}
-		
+	
+	method movimiento(personaje) = personaje.position().up(1)
+	
 }
 
 object abajo{
 	
-	method mover(){
-		if (ovni.position().y() > (game.height()/2) ) {
-			
-			return ovni.position().down(1)
-		}
-		else {
-			return ovni.position()
-		}
-	}
+	method movimiento(personaje) = personaje.position().down(1)
 		
 }
 
 object derecha{
-	//Corregir tamaño escenario para arreglar limite -3
-	method mover(){
-		if (ovni.position().x() <= game.width()-4) {
-			
-			return ovni.position().right(1)
-		}
-		else {
-			return ovni.position()
-		}
-	}
+	
+	method movimiento(personaje) = personaje.position().right(1)
 	
 }
 
 object izquierda{
 	
-	method mover(){
-		if (ovni.position().x() >= 0 ) {
-			return ovni.position().left(1)
-		}
-		else {
-			return ovni.position()
-		}
-	}
+	method movimiento(personaje) = personaje.position().left(1)
 }

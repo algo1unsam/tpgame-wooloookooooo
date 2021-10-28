@@ -7,15 +7,20 @@ program NaveGame {
 	
 //	CONFIG	
 	game.title("UFO Rescue")
-	game.height(20)
-	game.width(25)
-	//game.cellSize(50)
+	game.height(20) //crea 20 pixeles (los pixeles son de 50x50)
+	game.width(20)
 	game.boardGround("fondoluna.png")
 	
 //	VISUALES
 	game.addVisual(ovni)
 	game.addVisual(alien)
 	game.addVisual(nave)
+	20.times({ t => game.addVisual(new Limites(position = game.at(t-1,-1)))}) //limite abajo
+	20.times({ t => game.addVisual(new Limites(position = game.at(t-1,game.height())))}) //limite arriba
+	20.times({ t => game.addVisual(new Limites(position = game.at(-1,t-1)))}) //limite izquierda
+	20.times({ t => game.addVisual(new Limites(position = game.at(game.width(),t-1)))}) //limite derecha
+	20.times({ t => game.addVisual(new Limites(position = game.at(t-1,game.height()/2)))}) //limite medio
+
 //	TECLADO
 	keyboard.up().onPressDo { ovni.moverseA(arriba) }
 	keyboard.down().onPressDo { ovni.moverseA(abajo) }
