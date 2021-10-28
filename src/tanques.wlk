@@ -89,9 +89,7 @@ class Bala{
 		game.whenCollideDo(self, {cosa => cosa.fueImpactado(self)})
 	}
 	
-	method dejaPasar(){
-		//vacio
-	}
+	method dejaPasar() = false
 	
 	method fueImpactado(bala){
 		//vacio
