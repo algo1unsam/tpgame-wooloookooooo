@@ -5,25 +5,33 @@ import tanques.*
 class Bloques{
 	var property position = game.origin() //no importa la posicion pq se modifica cuando se intancia
 	
-	method esDisparado(bala){
+	method fueImpactado(bala){
 		if(self.seRompe()){
 			self.remover()
+			bala.remover()	
+		} else if(not self.dejaPasar()){
+			bala.remover()
 		}
-		bala.remover()	
+	}
+	
+	method fueImpactadoPorEnemigo(bala) {
+		self.fueImpactado(bala)
 	}
 	
 	method remover() {game.removeVisual(self)}
 	
 	method seRompe()
+	
+	method dejaPasar()
 }
 
 class BloquesDuros inherits Bloques{
-	method dejaPasar() = false
+	override method dejaPasar() = false
 	
 }
 
 class BloquesBlandos inherits Bloques{
-	method dejaPasar() = true
+	override method dejaPasar() = true
 }
 
 class Acero inherits BloquesDuros{
@@ -33,9 +41,7 @@ class Acero inherits BloquesDuros{
 }
 
 class Ladrillo inherits BloquesDuros{
-	var property fueGolpeado = 0
 	const property image = "ladrillos.png" 
 	
-	method vida() = 1
 	override method seRompe() = true
 }
