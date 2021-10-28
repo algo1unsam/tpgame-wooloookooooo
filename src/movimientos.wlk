@@ -1,26 +1,47 @@
 import wollok.game.*
+import tanques.*
+import bloques.*
 
-import personajes.*
-
-object arriba {
+object up{
+	const agregado = "Up"
 	
-	method movimiento(personaje) = personaje.position().up(1)
-	
+	method puedeMoverse(alguien){
+		 const objetos = game.getObjectsIn(alguien.position().up(1)) //defino los objetos de arriba
+		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+	}
+	method position(alguien) = alguien.position().up(1)
+	method imagen(alguien) = alguien.baseImg()+agregado+".png"
 }
 
-object abajo{
+object down{
+	const agregado = "Down"
 	
-	method movimiento(personaje) = personaje.position().down(1)
-		
+	method puedeMoverse(alguien){
+		 const objetos = game.getObjectsIn(alguien.position().down(1)) //defino los objetos de abajo
+		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+	}
+	method position(alguien) = alguien.position().down(1)
+	method imagen(alguien) = alguien.baseImg()+agregado+".png"
 }
 
-object derecha{
+object left{
+	const agregado = "Left"
 	
-	method movimiento(personaje) = personaje.position().right(1)
-	
+	method puedeMoverse(alguien){
+		 const objetos = game.getObjectsIn(alguien.position().left(1)) //defino los objetos de izquierda
+		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+	}
+	method position(alguien) = alguien.position().left(1)
+	method imagen(alguien) = alguien.baseImg()+agregado+".png"
 }
 
-object izquierda{
+object right{
+	const agregado = "Right"
 	
-	method movimiento(personaje) = personaje.position().left(1)
+	method puedeMoverse(alguien){
+		 const objetos = game.getObjectsIn(alguien.position().right(1)) //defino los objetos de derecha
+		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+	}
+	method position(alguien) = alguien.position().right(1)
+	method imagen(alguien) = alguien.baseImg()+agregado+".png"
 }

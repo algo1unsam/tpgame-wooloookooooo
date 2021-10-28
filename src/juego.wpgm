@@ -1,42 +1,50 @@
 import wollok.game.*
-import personajes.*
+import tanques.*
 import movimientos.*
+import bloques.*
 
+object creadorDeCosas{
+	method crear(cosa,x,y){
+		game.addVisualIn(cosa, game.at(x,y))
+		cosa.position(game.at(x,y))
+	} 
+}
 
-program NaveGame {
+program BattleCity {
 	
 //	CONFIG	
 	game.title("UFO Rescue")
-	game.height(20) //crea 20 pixeles (los pixeles son de 50x50)
-	game.width(20)
-	game.boardGround("fondoluna.png")
+	game.height(20) 
+	game.width(25)
+	game.ground("suelo.png")
 	
 //	VISUALES
-	game.addVisual(ovni)
-	game.addVisual(alien)
-	game.addVisual(nave)
-	20.times({ t => game.addVisual(new Limites(position = game.at(t-1,-1)))}) //limite abajo
-	20.times({ t => game.addVisual(new Limites(position = game.at(t-1,game.height())))}) //limite arriba
-	20.times({ t => game.addVisual(new Limites(position = game.at(-1,t-1)))}) //limite izquierda
-	20.times({ t => game.addVisual(new Limites(position = game.at(game.width(),t-1)))}) //limite derecha
-	20.times({ t => game.addVisual(new Limites(position = game.at(t-1,game.height()/2)))}) //limite medio
-
+	game.addVisual(tank)
+	
+	//agrego los limites y uso el bloque de acero que no se puede atravesar ni romper.
+	game.width().times({t => creadorDeCosas.crear(new Acero(),t-1,-1) }) //limite abajo
+	game.width().times({t => creadorDeCosas.crear(new Acero(),t-1,game.height()) }) //limite arriba
+	game.height().times({t => creadorDeCosas.crear(new Acero(),-1,t-1) }) //limite izquierda
+	game.height().times({t => creadorDeCosas.crear(new Acero(),game.width(),t-1) }) //limite derecha
+	
+	creadorDeCosas.crear(new Ladrillo(),5,5)
+	
 //	TECLADO
-	keyboard.up().onPressDo { ovni.moverseA(arriba) }
-	keyboard.down().onPressDo { ovni.moverseA(abajo) }
-	keyboard.left().onPressDo { ovni.moverseA(izquierda) }
-	keyboard.right().onPressDo { ovni.moverseA(derecha) }
+	keyboard.up().onPressDo { tank.mover(up)}
+	keyboard.down().onPressDo { tank.mover(down) }
+	keyboard.left().onPressDo { tank.mover(left) }
+	keyboard.right().onPressDo { tank.mover(right) }
+	
+	/* verifica q se mueva el tank enemigo (antes instanciar tankEnemigo con creadorDeCosas)
+	keyboard.w().onPressDo { tankEnemigo.mover(up)}
+	keyboard.s().onPressDo { tankEnemigo.mover(down) }
+	keyboard.a().onPressDo { tankEnemigo.mover(left) }
+	keyboard.d().onPressDo { tankEnemigo.mover(right) }
+	*/
 	
 //	SONIDO
-	const music = game.sound("ufoInvasion.mp3")
-	music.shouldLoop(true)
-	keyboard.shift().onPressDo({music.pause()})
-	keyboard.control().onPressDo({music.resume()})
-	game.schedule(500, {music.play()})
-	
 
 //	START
 	game.start()
 	
-
 }
