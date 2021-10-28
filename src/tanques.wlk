@@ -81,7 +81,7 @@ class Bala{
 	
 	method disparar() {
 		game.addVisual(self)
-		game.onTick(20000, "bala"+self.identity().toString()+"disparada",{ self.mover() })
+		game.onTick(200, "bala"+self.identity().toString()+"disparada",{ self.mover() })
 		self.choco()
 	}
 	
@@ -106,7 +106,7 @@ class Bala{
 class BalaEnemiga inherits Bala{
 	override method disparar(){
 		game.addVisual(self)
-		game.onTick(20000, "balaEnemiga"+self.identity().toString()+"disparada",{ self.mover() })
+		game.onTick(200, "balaEnemiga"+self.identity().toString()+"disparada",{ self.mover() })
 		self.choco()
 	}
 	
