@@ -15,6 +15,9 @@ object config{
 		creadorDeCosas.crear(new TankEnemigo(), 10, 10) //prueba
 		creadorDeCosas.crear(new Ladrillo(),5,5) //prueba
 		creadorDeCosas.crear(new Acero(),10,5)	//prueba	
+		creadorDeCosas.crear(new Agua(),15,15) //prueba
+		creadorDeCosas.crear(new Arbusto(),7,10) //prueba
+		
 //	TECLADO
 		self.teclado()	
 	}

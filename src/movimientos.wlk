@@ -1,51 +1,58 @@
 import wollok.game.*
 import tanques.*
 import bloques.*
+import config.*
 
-object up{
+class Direcciones{
+	method imagen(alguien) = alguien.baseImg()+self.agregado()+".png"
+	
+	method lateral() = false
+	
+	method agregado()
+}
+
+object up inherits Direcciones{
 	const property agregado = "Up"
 	
-	method lateral() = false
 	method puedeMoverse(alguien){
 		 const objetos = game.getObjectsIn(alguien.position().up(1)) //defino los objetos de arriba
-		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+		 return objetos.all({unBloque=> unBloque.dejaPasarTank()})
 	}
 	method position(alguien) = alguien.position().up(1)
-	method imagen(alguien) = alguien.baseImg()+agregado+".png"
+	
 }
 
-object down{
+object down inherits Direcciones{
 	const property agregado = "Down"
 	
-	method lateral() = false
 	method puedeMoverse(alguien){
 		 const objetos = game.getObjectsIn(alguien.position().down(1)) //defino los objetos de abajo
-		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+		 return objetos.all({unBloque=> unBloque.dejaPasarTank()})
 	}
 	method position(alguien) = alguien.position().down(1)
-	method imagen(alguien) = alguien.baseImg()+agregado+".png"
+	
 }
 
-object left{
+object left inherits Direcciones{
 	const property agregado = "Left"
 	
-	method lateral() = true
+	override method lateral() = true
 	method puedeMoverse(alguien){
 		 const objetos = game.getObjectsIn(alguien.position().left(1)) //defino los objetos de izquierda
-		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+		 return objetos.all({unBloque=> unBloque.dejaPasarTank()})
 	}
 	method position(alguien) = alguien.position().left(1)
-	method imagen(alguien) = alguien.baseImg()+agregado+".png"
+	
 }
 
-object right{
+object right inherits Direcciones{
 	const property agregado = "Right"
 	
-	method lateral() = true
+	override method lateral() = true
 	method puedeMoverse(alguien){
 		 const objetos = game.getObjectsIn(alguien.position().right(1)) //defino los objetos de derecha
-		 return objetos.all({unBloque=> unBloque.dejaPasar()})
+		 return objetos.all({unBloque=> unBloque.dejaPasarTank()})
 	}
 	method position(alguien) = alguien.position().right(1)
-	method imagen(alguien) = alguien.baseImg()+agregado+".png"
+	
 }

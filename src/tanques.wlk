@@ -1,6 +1,7 @@
 import wollok.game.*
 import movimientos.*
 import bloques.*
+import config.*
 
 object creadorDeCosas{
 	method crear(cosa,x,y){
@@ -21,7 +22,9 @@ class Tanques{
 	method position(unaPosicion) //definido en el objeto
 	method image(unaImagen) //definidos en el objeto
 	
-	method dejaPasar() = false
+	method dejaPasarTank() = false
+	
+	method dejaPasarBala() = false
 	
 	method remover() {game.removeVisual(self)}
 }
@@ -73,7 +76,10 @@ class Bala{
 	
 	method image () = "bala"+ sentido.agregado() +".png"
 	
-	method remover() {game.removeVisual(self)}
+	method remover() {
+		game.removeVisual(self)
+		//agregar sonido
+	}
 	
 	method mover(){
 		self.position(sentido.position(self))
@@ -89,7 +95,9 @@ class Bala{
 		game.whenCollideDo(self, {cosa => cosa.fueImpactado(self)})
 	}
 	
-	method dejaPasar() = false
+	method dejaPasarTank() = false
+	
+	method dejaPasarBala() = true
 	
 	method fueImpactado(bala){
 		//vacio
@@ -112,11 +120,11 @@ class BalaEnemiga inherits Bala{
 		game.whenCollideDo(self, {cosa => cosa.fueImpactadoPorEnemigo(self)})
 	}
 	
-	override method fueImpactadoPorEnemigo(bala){
+	override method fueImpactado(bala){
 		//vacio
 	}
 	
-	override method fueImpactado (bala){
+	override method fueImpactadoPorEnemigo (bala){
 		self.remover()
 		bala.remover()
 	}
