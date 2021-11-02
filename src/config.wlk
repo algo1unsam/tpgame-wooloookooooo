@@ -10,6 +10,7 @@ object config{
 		self.crearContornoExterior()
 		
 		game.addVisual(tank)
+		game.addVisual(aguila)
 		
 		self.crearMapa()
 		creadorDeCosas.crear(new TankEnemigo(), 10, 10) //prueba
