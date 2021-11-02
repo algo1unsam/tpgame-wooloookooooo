@@ -22,7 +22,6 @@ object up inherits Direcciones{
 	const property agregado = "Up"
 	
 	override method position(alguien) = alguien.position().up(1)
-	
 }
 
 object down inherits Direcciones{

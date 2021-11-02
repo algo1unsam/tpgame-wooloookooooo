@@ -11,7 +11,6 @@ object creadorDeCosas{
 }
 
 class Tanques{
-	var property tanquesAsesinados = 0
 	var property dondeMira = up
 	
 	method mover(donde){
@@ -30,12 +29,10 @@ class Tanques{
 	
 	method remover() {game.removeVisual(self)}
 	
-	method aumentarKill() {
-		tanquesAsesinados += 1
-	}
 }
 
 object tank inherits Tanques{
+	var property tanquesAsesinados = 0
 	const property baseImg = "tank"
 	var property image = "tankUp.png"
 	var property position = game.origin()
@@ -54,8 +51,8 @@ object tank inherits Tanques{
 		bala.remover()
 	}
 	
-	override method aumentarKill() {
-		super()
+	method aumentarKill() {
+		tanquesAsesinados += 1
 		if(self.tanquesAsesinados() == 10){ //si mata a 10 tanques gana
 			config.win()
 		}
@@ -79,6 +76,10 @@ class TankEnemigo inherits Tanques{
 	}
 	
 	method fueImpactadoPorEnemigo (bala){
+		//nada
+	}
+	
+	method aumentarKill(){
 		//nada
 	}
 }
@@ -131,10 +132,10 @@ class BalaEnemiga inherits Bala{
 	override method disparar(){
 		game.addVisual(self)
 		game.onTick(200, "balaEnemiga"+self.identity().toString()+" disparada",{ self.mover() })
-		self.choco()
+		self.impacto()
 	}
 	
-	override method choco(){
+	override method impacto(){
 		game.whenCollideDo(self, {cosa => cosa.fueImpactadoPorEnemigo(self)})
 	}
 	
