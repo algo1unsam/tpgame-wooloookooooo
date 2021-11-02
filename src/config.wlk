@@ -40,12 +40,6 @@ object config{
 		keyboard.right().onPressDo { tank.mover(right) }
 		keyboard.a().onPressDo { tank.disparo() }
 	
-		/* verifica q se mueva el tank enemigo (antes instanciar tankEnemigo con creadorDeCosas)
-		keyboard.w().onPressDo { tankEnemigo.mover(up)}
-		keyboard.s().onPressDo { tankEnemigo.mover(down) }
-		keyboard.a().onPressDo { tankEnemigo.mover(left) }
-		keyboard.d().onPressDo { tankEnemigo.mover(right) }
-		*/
 	}
 	
 	method crearMapa() {
@@ -53,10 +47,12 @@ object config{
 	}
 	
 	method gameOver(){
+		game.stop()
 		//musica y acaba juego
 	}
 	
 	method win(){
+		game.stop()
 		//musica y acaba juego
 	}
 }
