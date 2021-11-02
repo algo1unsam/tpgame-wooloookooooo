@@ -63,7 +63,7 @@ class Arbusto inherits Bloques{
 }
 
 object aguila{
-	const property position = game.at(12,20)
+	const property position = game.at(12,19)
 	var property image = "aguila.png"
 	
 	method dejaPasarTank() = false
