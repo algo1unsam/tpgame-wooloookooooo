@@ -11,7 +11,9 @@ object creadorDeCosas{
 }
 
 class Tanques{
+	var property tanquesAsesinados = 0
 	var property dondeMira = up
+	
 	method mover(donde){
 		if(donde.puedeMoverse(self)) self.position(donde.position(self))
 		self.image(donde.imagen(self)) 
@@ -27,6 +29,10 @@ class Tanques{
 	method dejaPasarBala() = false
 	
 	method remover() {game.removeVisual(self)}
+	
+	method aumentarKill() {
+		tanquesAsesinados += 1
+	}
 }
 
 object tank inherits Tanques{
@@ -47,6 +53,13 @@ object tank inherits Tanques{
 		//PERDER
 		bala.remover()
 	}
+	
+	override method aumentarKill() {
+		super()
+		if(self.tanquesAsesinados() == 10){ //si mata a 10 tanques gana
+			config.win()
+		}
+	}
 }
 
 class TankEnemigo inherits Tanques{
@@ -56,6 +69,7 @@ class TankEnemigo inherits Tanques{
 
 	method fueImpactado(bala){
 		self.remover()
+		bala.contarKill()
 		bala.remover()
 	}
 	
@@ -87,7 +101,7 @@ class Bala{
 	
 	method disparar() {
 		game.addVisual(self)
-		game.onTick(200, "bala"+self.identity().toString()+"disparada",{ self.mover() })
+		game.onTick(200, "bala"+self.identity().toString()+" disparada",{ self.mover() })
 		self.choco()
 	}
 	
@@ -107,12 +121,16 @@ class Bala{
 		self.remover()
 		bala.remover()
 	}
+	
+	method contarKill(){
+		quienDisparo.aumentarKill()
+	}
 }
 
 class BalaEnemiga inherits Bala{
 	override method disparar(){
 		game.addVisual(self)
-		game.onTick(200, "balaEnemiga"+self.identity().toString()+"disparada",{ self.mover() })
+		game.onTick(200, "balaEnemiga"+self.identity().toString()+" disparada",{ self.mover() })
 		self.choco()
 	}
 	

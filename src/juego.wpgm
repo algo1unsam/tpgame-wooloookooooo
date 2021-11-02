@@ -12,7 +12,7 @@ program BattleCity {
 	game.width(25)
 	game.ground("suelo.png")
 	
-	config.ejecutar()
+	config.global()
 
 //	START
 	game.start()

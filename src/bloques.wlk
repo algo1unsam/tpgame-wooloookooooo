@@ -28,48 +28,54 @@ class Bloques{
 	
 	method seRompe()
 	
-	method dejaPasarTank()
-	
 	method dejaPasarBala()
+	
+	method dejaPasarTank() = false
 }
 
-class BloquesDuros inherits Bloques{
-	override method dejaPasarTank() = false
-}
-
-class BloquesBlandos inherits Bloques{
-	override method dejaPasarTank() = true
-}
-
-class Acero inherits BloquesDuros{
+class Acero inherits Bloques{
 	const property image = "acero.png" 
 	
 	override method dejaPasarBala() = false
 	override method seRompe() = false
 }
 
-class Ladrillo inherits BloquesDuros{
+class Ladrillo inherits Bloques{
 	const property image = "ladrillos.png" 
 	
 	override method dejaPasarBala() = false
 	override method seRompe() = true
 }
 
-class Agua inherits BloquesDuros{
+class Agua inherits Bloques{
 	const property image = "agua.png" //falta agregar imagen
 	
 	override method dejaPasarBala() = true
 	override method seRompe() = false
 }
 
-class Arbusto inherits BloquesBlandos{
+class Arbusto inherits Bloques{
 	const property image = "arbusto.png" //falta agregar imagen
 	
+	override method dejaPasarTank() = true
 	override method dejaPasarBala() = true
 	override method seRompe() = false
 }
 
 object aguila{
 	const property position = game.origin()
-	var property image = "aguila.png"
+	var property image = "aguila.png" //falta imagen
+	
+	method dejaPasarTank() = false
+	method dejaPasarBala() = false
+	method seRompe() = true
+	
+	method fueImpactado(bala){
+		bala.remover()
+		config.gameOver() // termina el juego
+	}
+	
+	method fueImpactadoPorEnemigo(bala) {
+		self.fueImpactado(bala)
+	}
 }

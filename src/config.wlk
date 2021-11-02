@@ -5,7 +5,7 @@ import bloques.*
 
 object config{
 	
-	method ejecutar(){
+	method global(){
 //	VISUALES
 		self.crearContornoExterior()
 		
@@ -47,5 +47,13 @@ object config{
 	
 	method crearMapa() {
 		//configurar todo el mapa inicial
+	}
+	
+	method gameOver(){
+		//musica y acaba juego
+	}
+	
+	method win(){
+		//musica y acaba juego
 	}
 }
