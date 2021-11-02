@@ -50,7 +50,7 @@ object tank inherits Tanques{
 	}
 	
 	method fueImpactadoPorEnemigo (bala){
-		//PERDER
+		config.gameOver()
 		bala.remover()
 	}
 	
@@ -102,10 +102,10 @@ class Bala{
 	method disparar() {
 		game.addVisual(self)
 		game.onTick(200, "bala"+self.identity().toString()+" disparada",{ self.mover() })
-		self.choco()
+		self.impacto()
 	}
 	
-	method choco(){
+	method impacto(){
 		game.whenCollideDo(self, {cosa => cosa.fueImpactado(self)})
 	}
 	
