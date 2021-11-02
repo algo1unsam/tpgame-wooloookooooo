@@ -53,9 +53,6 @@ object tank inherits Tanques{
 	
 	method aumentarKill() {
 		tanquesAsesinados += 1
-		if(self.tanquesAsesinados() == 10){ //si mata a 10 tanques gana
-			config.win()
-		}
 	}
 }
 

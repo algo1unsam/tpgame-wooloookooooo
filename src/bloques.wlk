@@ -31,6 +31,10 @@ class Bloques{
 	method dejaPasarBala()
 	
 	method dejaPasarTank() = false
+	
+	method colisionoConTank(){
+		//vacio
+	}
 }
 
 class Acero inherits Bloques{
@@ -66,7 +70,7 @@ object aguila{
 	const property position = game.at(12,19)
 	var property image = "aguila.png"
 	
-	method dejaPasarTank() = false
+	method dejaPasarTank() = true
 	method dejaPasarBala() = false
 	method seRompe() = true
 	
@@ -78,6 +82,10 @@ object aguila{
 	method fueImpactado(bala){
 		bala.remover()
 		self.remover()
+	}
+	
+	method colisionoConTank(){
+		config.win()
 	}
 	
 	method fueImpactadoPorEnemigo(bala) {

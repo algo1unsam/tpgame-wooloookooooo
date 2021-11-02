@@ -12,6 +12,8 @@ object config{
 		game.addVisual(tank)
 		game.addVisual(aguila)
 		
+		game.onCollideDo(tank, {algo => algo.colisionoConTank()})
+		
 		self.crearMapa()
 		creadorDeCosas.crear(new TankEnemigo(), 10, 10) //prueba
 		creadorDeCosas.crear(new Ladrillo(),5,5) //prueba
