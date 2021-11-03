@@ -61,7 +61,7 @@ object config{
 		//musica y acaba juego
 	}
 	
-	/*
+	/* ACA DEJO EL SONIDO
  //	SONIDO
 	const music = game.sound("ufoInvasion.mp3")
 	music.shouldLoop(true)
