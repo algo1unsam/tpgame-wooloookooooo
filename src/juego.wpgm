@@ -10,7 +10,7 @@ program BattleCity {
 	
 //	CONFIG	
 	game.title("Battle City")
-	game.height(20) 
+	game.height(20)
 	game.width(25)
 	game.ground("suelo.png")
 	
