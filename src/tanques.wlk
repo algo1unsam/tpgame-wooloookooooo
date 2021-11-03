@@ -2,15 +2,10 @@ import wollok.game.*
 import movimientos.*
 import bloques.*
 import config.*
+import crearCosas.*
+import balas.*
 
-object creadorDeCosas{
-	method crear(cosa,x,y){
-		game.addVisualIn(cosa, game.at(x,y))
-		cosa.position(game.at(x,y))
-	} 
-}
-
-class Tanques{
+class Tanque{
 	var property dondeMira = up
 	
 	method mover(donde){
@@ -31,8 +26,8 @@ class Tanques{
 	
 }
 
-object tank inherits Tanques{
-	var property tanquesAsesinados = 0
+object tank inherits Tanque{
+	var property scoreAsesinados = 0
 	const property baseImg = "tank"
 	var property image = "tankUp.png"
 	var property position = game.origin()
@@ -47,21 +42,25 @@ object tank inherits Tanques{
 	}
 	
 	method fueImpactadoPorEnemigo (bala){
-		config.gameOver()
 		bala.remover()
+		config.gameOver()
 	}
 	
 	method aumentarKill() {
-		tanquesAsesinados += 1
+		scoreAsesinados += 100
 	}
 }
 
-class TankEnemigo inherits Tanques{
+class TankEnemigo inherits Tanque{
 	const property baseImg = "tankEnemigo"
 	var property image = "tankEnemigoUp.png"
 	var property position = game.origin() //no importa la posicion pq se modifica cuando se intancia
-
+	
+	method nombreOnTick() = baseImg+self.identity().toString()
+	
 	method fueImpactado(bala){
+		game.removeTickEvent(self.nombreOnTick()+"mover")
+		game.removeTickEvent(self.nombreOnTick()+"disparo")
 		self.remover()
 		bala.contarKill()
 		bala.remover()
@@ -78,70 +77,5 @@ class TankEnemigo inherits Tanques{
 	
 	method aumentarKill(){
 		//nada
-	}
-}
-
-class Bala{
-	const property quienDisparo
-	const property sentido 
-	var property position
-	
-	method image () = "bala"+ sentido.agregado() +".png"
-	
-	method remover() {
-		game.removeVisual(self)
-		//agregar sonido
-	}
-	
-	method mover(){
-		self.position(sentido.position(self))
-	}
-	
-	method disparar() {
-		game.addVisual(self)
-		game.onTick(200, "bala"+self.identity().toString()+" disparada",{ self.mover() })
-		self.impacto()
-	}
-	
-	method impacto(){
-		game.whenCollideDo(self, {cosa => cosa.fueImpactado(self)})
-	}
-	
-	method dejaPasarTank() = false
-	
-	method dejaPasarBala() = true
-	
-	method fueImpactado(bala){
-		//vacio
-	}
-	
-	method fueImpactadoPorEnemigo (bala){
-		self.remover()
-		bala.remover()
-	}
-	
-	method contarKill(){
-		quienDisparo.aumentarKill()
-	}
-}
-
-class BalaEnemiga inherits Bala{
-	override method disparar(){
-		game.addVisual(self)
-		game.onTick(200, "balaEnemiga"+self.identity().toString()+" disparada",{ self.mover() })
-		self.impacto()
-	}
-	
-	override method impacto(){
-		game.whenCollideDo(self, {cosa => cosa.fueImpactadoPorEnemigo(self)})
-	}
-	
-	override method fueImpactado(bala){
-		//vacio
-	}
-	
-	override method fueImpactadoPorEnemigo (bala){
-		self.remover()
-		bala.remover()
 	}
 }

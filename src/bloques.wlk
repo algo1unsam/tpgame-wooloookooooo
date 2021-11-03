@@ -2,6 +2,8 @@ import wollok.game.*
 import movimientos.*
 import tanques.*
 import config.*
+import crearCosas.*
+import balas.*
 
 class Bloques{
 	var property position = game.origin() //no importa la posicion pq se modifica cuando se intancia
@@ -76,7 +78,7 @@ object aguila{
 	
 	method remover(){
 		game.removeVisual(self)
-		config.gameOver() // termina el juego
+		config.gameOver() 
 	}
 	
 	method fueImpactado(bala){

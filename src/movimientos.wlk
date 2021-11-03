@@ -2,6 +2,8 @@ import wollok.game.*
 import tanques.*
 import bloques.*
 import config.*
+import crearCosas.*
+import balas.*
 
 class Direcciones{
 	method imagen(alguien) = alguien.baseImg()+self.agregado()+".png"

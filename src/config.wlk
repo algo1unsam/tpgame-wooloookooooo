@@ -2,6 +2,8 @@ import wollok.game.*
 import tanques.*
 import movimientos.*
 import bloques.*
+import crearCosas.*
+import balas.*
 
 object config{
 	
@@ -11,11 +13,13 @@ object config{
 		
 		game.addVisual(tank)
 		game.addVisual(aguila)
+		game.addVisual(score)
 		
-		game.onCollideDo(tank, {algo => algo.colisionoConTank()})
+		game.onCollideDo(tank, {algo => algo.colisionoConTank()}) //dice cuando gano
 		
 		self.crearMapa()
-		creadorDeCosas.crear(new TankEnemigo(), 10, 10) //prueba
+		
+		game.onTick(5000, "tanques", {creadorDeCosas.crearTankEnemigo()})
 		creadorDeCosas.crear(new Ladrillo(),5,5) //prueba
 		creadorDeCosas.crear(new Acero(),10,5)	//prueba	
 		creadorDeCosas.crear(new Agua(),15,15) //prueba
@@ -24,6 +28,7 @@ object config{
 //	TECLADO
 		self.teclado()	
 	}
+	
 	
 	method crearContornoExterior(){
 		//agrego los limites y uso el bloque de acero que no se puede atravesar ni romper.
