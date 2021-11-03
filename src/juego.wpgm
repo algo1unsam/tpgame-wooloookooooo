@@ -1,0 +1,22 @@
+import wollok.game.*
+import tanques.*
+import movimientos.*
+import bloques.*
+import config.*
+import crearCosas.*
+import balas.*
+
+program BattleCity {
+	
+//	CONFIG	
+	game.title("Battle City")
+	game.height(20) 
+	game.width(25)
+	game.ground("suelo.png")
+	
+	config.global()
+
+//	START
+	game.start()
+	
+}
