@@ -60,4 +60,14 @@ object config{
 		game.stop()
 		//musica y acaba juego
 	}
+	
+	/*
+ //	SONIDO
+	const music = game.sound("ufoInvasion.mp3")
+	music.shouldLoop(true)
+	keyboard.shift().onPressDo({music.pause()})
+	keyboard.control().onPressDo({music.resume()})
+	game.schedule(500, {music.play()})
+	
+	 */
 }
