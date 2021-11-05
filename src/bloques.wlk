@@ -5,7 +5,7 @@ import config.*
 import crearCosas.*
 import balas.*
 
-class Bloques{
+class Bloque{
 	var property position = game.origin() //no importa la posicion pq se modifica cuando se intancia
 	
 	method fueImpactado(bala){
@@ -39,28 +39,28 @@ class Bloques{
 	}
 }
 
-class Acero inherits Bloques{
+class Acero inherits Bloque{
 	const property image = "acero.png" 
 	
 	override method dejaPasarBala() = false
 	override method seRompe() = false
 }
 
-class Ladrillo inherits Bloques{
+class Ladrillo inherits Bloque{
 	const property image = "ladrillos.png" 
 	
 	override method dejaPasarBala() = false
 	override method seRompe() = true
 }
 
-class Agua inherits Bloques{
+class Agua inherits Bloque{
 	const property image = "agua.png" 
 	
 	override method dejaPasarBala() = true
 	override method seRompe() = false
 }
 
-class Arbusto inherits Bloques{
+class Arbusto inherits Bloque{
 	const property image = "arbusto.png" 
 	
 	override method dejaPasarTank() = true
