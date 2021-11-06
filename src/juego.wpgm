@@ -1,10 +1,6 @@
 import wollok.game.*
-import tanques.*
-import movimientos.*
-import bloques.*
 import config.*
-import crearCosas.*
-import balas.*
+
 
 program BattleCity {
 	
@@ -17,6 +13,5 @@ program BattleCity {
 	config.global()
 
 //	START
-	game.start()
-	
+	game.start()	
 }

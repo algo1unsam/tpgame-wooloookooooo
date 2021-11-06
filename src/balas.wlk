@@ -1,9 +1,4 @@
 import wollok.game.*
-import tanques.*
-import movimientos.*
-import bloques.*
-import config.*
-import crearCosas.*
 
 class Bala{
 	const property quienDisparo

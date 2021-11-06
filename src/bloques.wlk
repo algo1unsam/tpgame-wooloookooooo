@@ -1,9 +1,5 @@
 import wollok.game.*
-import movimientos.*
-import tanques.*
 import config.*
-import crearCosas.*
-import balas.*
 
 class Bloque{
 	var property position = game.origin() //no importa la posicion pq se modifica cuando se intancia

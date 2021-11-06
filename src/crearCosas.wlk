@@ -1,9 +1,7 @@
 import wollok.game.*
 import tanques.*
 import movimientos.*
-import bloques.*
-import config.*
-import balas.*
+
 
 object creadorDeCosas{
 	method crear(cosa,x,y){
