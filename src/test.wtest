@@ -1,0 +1,89 @@
+import bloques.*
+import crearCosas.*
+import balas.*
+import tanques.*
+import wollok.game.*
+import movimientos.*
+
+describe "bloques" {
+	
+	const ladrillo = new Ladrillo()
+	const acero = new Acero()
+	const agua = new Agua()
+	const arbusto = new Arbusto()
+	const bala = new Bala()
+	const balaEnemiga = new Bala()
+	//const tanqueEnemigo = new TankEnemigo()
+	//const tanque = new Tank()
+	
+	method initialize() {
+		creadorDeCosas.crear(ladrillo,0,1)
+		creadorDeCosas.crear(acero,0,1)
+		creadorDeCosas.crear(agua,0,1)
+		creadorDeCosas.crear(arbusto,0,1)
+		
+		tank.disparo()
+		bala.disparar()
+	
+		balaEnemiga.disparar()
+	}
+	
+	
+	test "LADRILLO se rompe al recibir disparo del jugador" {
+		ladrillo.fueImpactado(bala)
+		assert.that(ladrillo.seRompe())
+		
+	}
+	
+	test "LADRILLO se rompe al recibir disparo enemigo" {
+		
+		ladrillo.fueImpactado(balaEnemiga)
+		assert.that(ladrillo.seRompe())
+	}
+	
+	test "ACERO NO al recibir disparo" {
+		acero.fueImpactado(bala)
+		assert.notThat(acero.seRompe())
+		 
+		acero.fueImpactado(balaEnemiga)
+		assert.notThat(acero.seRompe())
+	}
+	
+
+	
+	test "BALAS atraviesan el AGUA" {
+		agua.fueImpactado(bala)
+		assert.that(agua.dejaPasarBala())
+		
+		agua.fueImpactado(balaEnemiga)
+		assert.that(agua.dejaPasarBala())
+	}
+	
+	/*
+	test "TANQUES NO atraviesan el AGUA" {
+		//tank.mover()
+		assert.notThat(agua.dejaPasarTank())
+	}
+	* /
+	*/
+	
+	test "AGUA NO se rompe al recibir disparos" {
+		agua.fueImpactado(bala)
+		assert.notThat(agua.seRompe())
+		
+		agua.fueImpactado(balaEnemiga)
+		assert.notThat(agua.seRompe()) 
+	}
+
+	
+	test "ARBUSTO NO se rompe al recibir disparos" {
+		arbusto.fueImpactado(bala)
+		assert.notThat(arbusto.seRompe())
+		
+		arbusto.fueImpactado(balaEnemiga)
+		assert.notThat(arbusto.seRompe()) 
+	}
+	
+
+	
+}

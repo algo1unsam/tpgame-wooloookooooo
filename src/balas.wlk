@@ -1,8 +1,9 @@
 import wollok.game.*
+import tanques.*
 
-class Bala{
+class Bala {
 	const property quienDisparo
-	const property sentido 
+	const property sentido
 	var property position
 	
 	method nombreOnTick() = "bala"+self.identity().toString()+" disparada"
