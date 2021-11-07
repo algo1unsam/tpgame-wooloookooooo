@@ -52,7 +52,8 @@ object config{
 	method gameOver(){
 		game.clear()
 		gameOver.crearMapa()    
-		keyboard.enter().onPressDo { game.stop()}    
+		keyboard.enter().onPressDo { game.stop()}  
+		
 		//musica y acaba juego
 	}
 	
@@ -63,11 +64,9 @@ object config{
 	
 	/* ACA DEJO EL SONIDO
  //	SONIDO
-	const music = game.sound("ufoInvasion.mp3")
-	music.shouldLoop(true)
-	keyboard.shift().onPressDo({music.pause()})
-	keyboard.control().onPressDo({music.resume()})
-	game.schedule(500, {music.play()})
+	const bala = game.sound("bala.mp3")
+	bala.shouldLoop(true)
+	game.schedule(500, {bala.play()})
 	
 	 */
 }

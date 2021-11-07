@@ -13,9 +13,7 @@ describe "bloques" {
 	const agua = new Agua()
 	const arbusto = new Arbusto()
 	const tanqueEnemigo = new TankEnemigo()
-	const bala = new Bala(quienDisparo = tank, sentido = up, position = game.at(10,10))
-
-	
+	const bala = new Bala(esEnemiga = false, quienDisparo = tank, sentido = up, position = game.at(10,10))
 	
 	method initialize() {
 		creadorDeCosas.crear(ladrillo,0,1)
@@ -24,11 +22,11 @@ describe "bloques" {
 		creadorDeCosas.crear(arbusto,3,1)
 		
 		game.addVisual(tank)
-		
 		tank.disparo()
 		bala.disparar()
 	
 	}
+	
 //LADRILLO	
 	test "LADRILLO se rompe al recibir disparo del jugador" {
 		ladrillo.fueImpactado(bala)
@@ -130,7 +128,7 @@ describe "bloques" {
 	
 	
 	test "TANQUES atraviesan el ARBUSTO" {
-		//tank.position(0,0)
+		//tank.position(game.at(0,0))
 		tank.mover(up)
 		assert.that(arbusto.dejaPasarTank())
 	}

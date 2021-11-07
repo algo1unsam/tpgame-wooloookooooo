@@ -2,6 +2,7 @@ import wollok.game.*
 import tanques.*
 
 class Bala {
+	const property esEnemiga 
 	const property quienDisparo
 	const property sentido
 	var property position
@@ -33,14 +34,17 @@ class Bala {
 	method dejaPasarTank() = false
 	
 	method dejaPasarBala() = true
-	/*
+	
 	method fueImpactado(bala){
-		//vacio
+		if(not self.esEnemiga() and not bala.esEnemiga()){
+			
+		} else {
+			self.remover()
+		}
 	}
-	*/
-	method fueImpactado(bala){
-		self.remover()
-		bala.remover()
+	
+	method colisionoConTank(){
+		
 	}
 	
 	method contarKill(){
