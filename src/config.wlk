@@ -3,12 +3,12 @@ import crearCosas.*
 import bloques.*
 import tanques.*
 import movimientos.*
-import mapas.*
+import escenas.*
 
 
 object config{
 	
-	method global() {
+	method global(nivel) {
 	
 	//	TECLADO
 		self.teclado()	
@@ -16,7 +16,7 @@ object config{
 	//	VISUALES
 		self.crearLimites()
 				
-		mapaNivel1.crearMapa()
+		nivel.crearMapa()
 		
 		game.addVisual(score)
 		game.addVisual(tank)

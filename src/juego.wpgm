@@ -1,16 +1,18 @@
 import wollok.game.*
 import config.*
+import escenas.*
 
 
 program BattleCity {
 	
 //	CONFIG	
+	var nivel = nivel1
 	game.title("Wollok Tank")
 	game.height(20)
 	game.width(25)
 	game.ground("suelo.png")
 	
-	config.global()
+	config.global(nivel)
 
 //	START
 	game.start()	
