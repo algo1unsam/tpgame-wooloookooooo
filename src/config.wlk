@@ -159,7 +159,7 @@ object config{
 		creadorDeCosas.crear(new Ladrillo(),20,6)
 		creadorDeCosas.crear(new Ladrillo(),23,2)
 		creadorDeCosas.crear(new Ladrillo(),22,3)    
-		
+		keyboard.enter().onPressDo { game.stop()}    
 		//musica y acaba juego
 	}
 	
