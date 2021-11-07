@@ -63,8 +63,8 @@ class TankEnemigo inherits Tanque{
 	}
 	
 	method disparo(){
-		const balaEnemiga = new BalaEnemiga(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self)
-		balaEnemiga.disparar()
+		const bala = new Bala(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self)
+		bala.disparar()
 	}
 
 	method aumentarKill(){

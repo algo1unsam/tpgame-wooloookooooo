@@ -12,25 +12,23 @@ describe "bloques" {
 	const acero = new Acero()
 	const agua = new Agua()
 	const arbusto = new Arbusto()
-	const bala = new Bala()
-	const balaEnemiga = new BalaEnemiga()
 	const tanqueEnemigo = new TankEnemigo()
+	const bala = new Bala(quienDisparo = tank, sentido = up, position = game.at(10,10))
+
 	
 	
 	method initialize() {
 		creadorDeCosas.crear(ladrillo,0,1)
-		creadorDeCosas.crear(acero,0,1)
-		creadorDeCosas.crear(agua,0,1)
-		creadorDeCosas.crear(arbusto,0,1)
+		creadorDeCosas.crear(acero,1,1)
+		creadorDeCosas.crear(agua,2,1)
+		creadorDeCosas.crear(arbusto,3,1)
 		
 		game.addVisual(tank)
 		
 		tank.disparo()
 		bala.disparar()
 	
-		balaEnemiga.disparar()
 	}
-	
 //LADRILLO	
 	test "LADRILLO se rompe al recibir disparo del jugador" {
 		ladrillo.fueImpactado(bala)
@@ -38,7 +36,7 @@ describe "bloques" {
 	}
 	
 	test "LADRILLO se rompe al recibir disparo enemigo" {
-		ladrillo.fueImpactado(balaEnemiga)
+		ladrillo.fueImpactado(bala)
 		assert.that(ladrillo.seRompe())
 	}
 
@@ -48,7 +46,7 @@ describe "bloques" {
 	}
 	
 	test "BALA enemiga NO atraviesa el LADRILLO" {
-		ladrillo.fueImpactado(balaEnemiga) 
+		ladrillo.fueImpactado(bala) 
 		assert.notThat(ladrillo.dejaPasarBala())
 	}
 		
@@ -69,7 +67,7 @@ describe "bloques" {
 		acero.fueImpactado(bala)
 		assert.notThat(acero.seRompe())
 		 
-		acero.fueImpactado(balaEnemiga)
+		acero.fueImpactado(bala)
 		assert.notThat(acero.seRompe())
 	}
 	
@@ -77,7 +75,7 @@ describe "bloques" {
 		acero.fueImpactado(bala)
 		assert.notThat(acero.dejaPasarBala())
 		
-		acero.fueImpactado(balaEnemiga)
+		acero.fueImpactado(bala)
 		assert.notThat(acero.dejaPasarBala())
 	}
 	
@@ -94,7 +92,7 @@ describe "bloques" {
 		agua.fueImpactado(bala)
 		assert.notThat(agua.seRompe())
 		
-		agua.fueImpactado(balaEnemiga)
+		agua.fueImpactado(bala)
 		assert.notThat(agua.seRompe()) 
 	}
 
@@ -102,7 +100,7 @@ describe "bloques" {
 		agua.fueImpactado(bala)
 		assert.that(agua.dejaPasarBala())
 		
-		agua.fueImpactado(balaEnemiga)
+		agua.fueImpactado(bala)
 		assert.that(agua.dejaPasarBala())
 	}
 	
@@ -118,7 +116,7 @@ describe "bloques" {
 		arbusto.fueImpactado(bala)
 		assert.notThat(arbusto.seRompe())
 		
-		arbusto.fueImpactado(balaEnemiga)
+		arbusto.fueImpactado(bala)
 		assert.notThat(arbusto.seRompe()) 
 	}
 	
@@ -126,7 +124,7 @@ describe "bloques" {
 		arbusto.fueImpactado(bala)
 		assert.that(arbusto.dejaPasarBala())
 		
-		arbusto.fueImpactado(balaEnemiga)
+		arbusto.fueImpactado(bala)
 		assert.that(arbusto.dejaPasarBala())
 	}
 	
@@ -143,7 +141,8 @@ describe "bloques" {
 //SCORE
 	test "SCORE aumenta cuando se matan enemigos" {
 		//tank.aumentarKill()
-		tanqueEnemigo.fueImpactado(bala)
+		tanqueEnemigo.fueImpactado(bala) //no funciona porque tanque enemigo no tiene el tick event ya q no fue creado
+										//como lo crea el juego.
 		assert.equals(100, tank.scoreAsesinados())
 	}
 }

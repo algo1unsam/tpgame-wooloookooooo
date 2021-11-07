@@ -48,16 +48,3 @@ class Bala {
 	}
 }
 
-class BalaEnemiga inherits Bala{
-	override method nombreOnTick() = "balaEnemiga"+self.identity().toString()+" disparada"
-	
-	override method impacto(){
-		game.whenCollideDo(self, {cosa => cosa.fueImpactado(self)})
-	}
-	
-	override method fueImpactado (bala){
-		self.remover()
-		bala.remover()
-	}
-}
-
