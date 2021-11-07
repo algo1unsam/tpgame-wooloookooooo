@@ -3,10 +3,12 @@ import config.*
 
 class Bloque{
 	var property position = game.origin() //no importa la posicion pq se modifica cuando se intancia
+	var property fueDestruido = false
 	
 	method fueImpactado(bala){
 		if(not self.dejaPasarBala()){
 			if(self.seRompe()){
+				fueDestruido = true			
 				bala.remover()
 				self.remover()
 			} else {
