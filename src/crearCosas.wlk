@@ -32,10 +32,10 @@ object score{
 	method text() = "score: " +tank.scoreAsesinados().toString()
 	
 	method textColor() = "FFFFFF"
-	
+	/*
 	method fueImpactadoPorEnemigo(bala){
 		//nada 
-	}
+	}*/
 	
 	method fueImpactado(bala){
 		//nada 

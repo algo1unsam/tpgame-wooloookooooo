@@ -36,12 +36,12 @@ object tank inherits Tanque{
 		const bala = new Bala(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self)
 		bala.disparar()
 	}
-	
+	/*
 	method fueImpactado(bala){
 		//vacio
 	}
-	
-	method fueImpactadoPorEnemigo (bala){
+	*/
+	method fueImpactado (bala){
 		bala.remover()
 		config.gameOver()
 	}
@@ -70,11 +70,11 @@ class TankEnemigo inherits Tanque{
 		const balaEnemiga = new BalaEnemiga(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self)
 		balaEnemiga.disparar()
 	}
-	
-	method fueImpactadoPorEnemigo (bala){
+	/* 
+	method fueImpactado (bala){
 		//nada
 	}
-	
+	*/
 	method aumentarKill(){
 		//nada
 	}

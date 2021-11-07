@@ -33,12 +33,12 @@ class Bala {
 	method dejaPasarTank() = false
 	
 	method dejaPasarBala() = true
-	
+	/*
 	method fueImpactado(bala){
 		//vacio
 	}
-	
-	method fueImpactadoPorEnemigo (bala){
+	*/
+	method fueImpactado(bala){
 		self.remover()
 		bala.remover()
 	}
@@ -52,14 +52,14 @@ class BalaEnemiga inherits Bala{
 	override method nombreOnTick() = "balaEnemiga"+self.identity().toString()+" disparada"
 	
 	override method impacto(){
-		game.whenCollideDo(self, {cosa => cosa.fueImpactadoPorEnemigo(self)})
+		game.whenCollideDo(self, {cosa => cosa.fueImpactado(self)})
 	}
-	
+	/*
 	override method fueImpactado(bala){
 		//vacio
-	}
+	}*/
 	
-	override method fueImpactadoPorEnemigo (bala){
+	override method fueImpactado (bala){
 		self.remover()
 		bala.remover()
 	}

@@ -14,11 +14,11 @@ class Bloque{
 			}
 		}
 	}
-	
+	/* 
 	method fueImpactadoPorEnemigo(bala) {
 		self.fueImpactado(bala)
 	}
-	
+	*/
 	method remover() {
 		game.removeVisual(self)
 		//agregar sonido
@@ -85,8 +85,8 @@ object aguila{
 	method colisionoConTank(){
 		config.win()
 	}
-	
-	method fueImpactadoPorEnemigo(bala) {
+	/*
+	method fueImpactado(bala) {
 		self.fueImpactado(bala)
-	}
+	}*/
 }

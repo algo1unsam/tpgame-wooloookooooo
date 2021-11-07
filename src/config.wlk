@@ -50,6 +50,7 @@ object config{
 	}
 	
 	method gameOver(){
+		
 		game.stop()
 		//musica y acaba juego
 	}
