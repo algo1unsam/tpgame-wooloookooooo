@@ -54,10 +54,6 @@ class BalaEnemiga inherits Bala{
 	override method impacto(){
 		game.whenCollideDo(self, {cosa => cosa.fueImpactado(self)})
 	}
-	/*
-	override method fueImpactado(bala){
-		//vacio
-	}*/
 	
 	override method fueImpactado (bala){
 		self.remover()

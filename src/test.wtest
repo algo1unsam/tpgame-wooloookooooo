@@ -4,6 +4,7 @@ import balas.*
 import tanques.*
 import wollok.game.*
 import movimientos.*
+import tanques.*
 
 describe "bloques" {
 	
@@ -12,15 +13,17 @@ describe "bloques" {
 	const agua = new Agua()
 	const arbusto = new Arbusto()
 	const bala = new Bala()
-	const balaEnemiga = new Bala()
-	//const tanqueEnemigo = new TankEnemigo()
-	//const tanque = new Tank()
+	const balaEnemiga = new BalaEnemiga()
+	const tanqueEnemigo = new TankEnemigo()
+	
 	
 	method initialize() {
 		creadorDeCosas.crear(ladrillo,0,1)
 		creadorDeCosas.crear(acero,0,1)
 		creadorDeCosas.crear(agua,0,1)
 		creadorDeCosas.crear(arbusto,0,1)
+		
+		game.addVisual(tank)
 		
 		tank.disparo()
 		bala.disparar()
@@ -38,7 +41,17 @@ describe "bloques" {
 		ladrillo.fueImpactado(balaEnemiga)
 		assert.that(ladrillo.seRompe())
 	}
+
+	test "BALA del jugador NO atraviesa el LADRILLO" {
+		ladrillo.fueImpactado(bala)
+		assert.notThat(ladrillo.dejaPasarBala())
+	}
 	
+	test "BALA enemiga NO atraviesa el LADRILLO" {
+		ladrillo.fueImpactado(balaEnemiga) 
+		assert.notThat(ladrillo.dejaPasarBala())
+	}
+		
 	/*
 	test "LADRILLO NO deja pasar TANQUE" {
 		//Agregar cambio posicion del tanque
@@ -48,18 +61,7 @@ describe "bloques" {
 	test "TANQUE puede pasar al romperse el LADRILLO" {
 		ladrillo.fueImpactado(bala)
 		assert.that(ladrillo.seRompe())	
-		//Agregar cambio posicion del tanque
-		
-	}
-	
-	test "BALA del jugador NO atraviesan el LADRILLO" {
-		ladrillo.fueImpactado(bala)
-		assert.notThat(ladrillo.dejaPasarBala())
-	}
-	
-	test "BALA enemiga NO atraviesa el LADRILLO" {
-		ladrillo.fueImpactado(balaEnemiga) 
-		assert.notThat(ladrillo.dejaPasarBala())
+		//Agregar cambio posicion del tanque	
 	}
 	
 //ACERO	
@@ -71,13 +73,6 @@ describe "bloques" {
 		assert.notThat(acero.seRompe())
 	}
 	
-	/*
-	test "TANQUE NO puede pasar el ACERO aunque reciba disparo" {
-		ladrillo.fueImpactado(bala)
-		//Agregar cambio posicion del tanque	
-	}
-	*/
-	
 	test "BALAS NO atraviesan el ACERO" {
 		acero.fueImpactado(bala)
 		assert.notThat(acero.dejaPasarBala())
@@ -85,7 +80,24 @@ describe "bloques" {
 		acero.fueImpactado(balaEnemiga)
 		assert.notThat(acero.dejaPasarBala())
 	}
+	
+	/*
+	test "TANQUE NO puede pasar el ACERO aunque reciba disparo" {
+		ladrillo.fueImpactado(bala)
+		//Agregar cambio posicion del tanque	
+	}
+	*/
+	
+
 //AGUA	
+	test "AGUA NO se rompe al recibir disparos" {
+		agua.fueImpactado(bala)
+		assert.notThat(agua.seRompe())
+		
+		agua.fueImpactado(balaEnemiga)
+		assert.notThat(agua.seRompe()) 
+	}
+
 	test "BALAS atraviesan el AGUA" {
 		agua.fueImpactado(bala)
 		assert.that(agua.dejaPasarBala())
@@ -101,14 +113,6 @@ describe "bloques" {
 	}
 	*/
 
-	test "AGUA NO se rompe al recibir disparos" {
-		agua.fueImpactado(bala)
-		assert.notThat(agua.seRompe())
-		
-		agua.fueImpactado(balaEnemiga)
-		assert.notThat(agua.seRompe()) 
-	}
-
 //ARBUSTO	
 	test "ARBUSTO NO se rompe al recibir disparos" {
 		arbusto.fueImpactado(bala)
@@ -118,6 +122,28 @@ describe "bloques" {
 		assert.notThat(arbusto.seRompe()) 
 	}
 	
-
+	test "BALAS atraviesan el ARBUSTO" {
+		arbusto.fueImpactado(bala)
+		assert.that(arbusto.dejaPasarBala())
+		
+		arbusto.fueImpactado(balaEnemiga)
+		assert.that(arbusto.dejaPasarBala())
+	}
 	
+	
+	test "TANQUES atraviesan el ARBUSTO" {
+		//tank.position(0,0)
+		tank.mover(up)
+		assert.that(arbusto.dejaPasarTank())
+	}
+	
+	
+//AGUILA
+	
+//SCORE
+	test "SCORE aumenta cuando se matan enemigos" {
+		//tank.aumentarKill()
+		tanqueEnemigo.fueImpactado(bala)
+		assert.equals(100, tank.scoreAsesinados())
+	}
 }
