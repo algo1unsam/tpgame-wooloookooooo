@@ -8,13 +8,17 @@ class Bloque{
 	method fueImpactado(bala){
 		if(not self.dejaPasarBala()){
 			if(self.seRompe()){
-				fueDestruido = true			
+				self.setFueDestruido()			
 				bala.remover()
 				self.remover()
 			} else {
 				bala.remover()
 			}
 		}
+	}
+	
+	method setFueDestruido() {
+		fueDestruido = true	
 	}
 	
 	method remover() {
