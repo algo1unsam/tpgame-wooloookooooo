@@ -51,22 +51,57 @@ object config{
 	
 	method gameOver(){
 		game.clear()
-		gameOver.crearMapa()    
+		gameOver.crearMapa()
+		game.addVisual(enter)
+		game.addVisual(presione)
 		keyboard.enter().onPressDo { game.stop()}  
-		
+		musica.perder().shouldLoop(true)	
+			musica.perder().play()
+			musica.perder().volume(0.2)  
 		//musica y acaba juego
 	}
 	
 	method win(){
-		game.stop()
-		//musica y acaba juego
+		game.clear()
+		game.addVisual(ganar)
+		keyboard.enter().onPressDo {game.stop()}
+		musica.ganar().shouldLoop(true)	
+			musica.ganar().play()
+			musica.ganar().volume(0.2)
+		
 	}
 	
 	/* ACA DEJO EL SONIDO
  //	SONIDO
-	const bala = game.sound("bala.mp3")
-	bala.shouldLoop(true)
-	game.schedule(500, {bala.play()})
+	const music = game.sound("ufoInvasion.mp3")
+	music.shouldLoop(true)
+	keyboard.shift().onPressDo({music.pause()})
+	keyboard.control().onPressDo({music.resume()})
+	game.schedule(500, {music.play()})
 	
 	 */
 }
+object musica{
+const property musica = game.sound("matatan.mp3")
+const property pium = game.sound("pium.mp3")
+const property ganar = game.sound("win.mp3")
+const property perder = game.sound("perder.mp3")
+
+}
+
+object ganar{
+method position()= game.origin()
+method image()="ganaste.png" 
+}
+object enter{
+method position()= game.at(16,10)
+method image()="enter.png" 
+}
+object presione{
+	method position()= game.at(4,10)
+method image()="presione.png" 
+}
+/*object pantalladecarga{
+method position()= game.origin()
+method image()="pantalladecarga.png"*/ 
+ 
