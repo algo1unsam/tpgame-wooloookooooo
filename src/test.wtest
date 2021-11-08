@@ -22,7 +22,11 @@ describe "bloques" {
 		creadorDeCosas.crear(agua,1,2)
 		creadorDeCosas.crear(arbusto,1,3)
 		
+		game.onTick(700, tanqueEnemigo.nombreOnTick()+"mover", { })
+		game.onTick(1000, tanqueEnemigo.nombreOnTick()+"disparo", { }) //creo los ontick para q existan en los test y no tire error
+			
 		game.addVisual(tank)
+		game.addVisual(tanqueEnemigo)
 		tank.disparo()
 		bala.disparar()
 	
@@ -131,8 +135,7 @@ describe "bloques" {
 //SCORE
 	test "SCORE aumenta cuando se matan enemigos" {
 		//tank.aumentarKill()
-		tanqueEnemigo.fueImpactado(bala) //no funciona porque tanque enemigo no tiene el tick event ya q no fue creado
-										//como lo crea el juego.
+		tanqueEnemigo.fueImpactado(bala)
 		assert.equals(100, tank.scoreAsesinados())
 	}
 }
