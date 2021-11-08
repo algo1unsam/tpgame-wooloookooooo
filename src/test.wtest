@@ -24,12 +24,12 @@ describe "bloques" {
 		
 		game.onTick(700, tanqueEnemigo.nombreOnTick()+"mover", { })
 		game.onTick(1000, tanqueEnemigo.nombreOnTick()+"disparo", { }) //creo los ontick para q existan en los test y no tire error
-			
+		
 		game.addVisual(tank)
 		game.addVisual(tanqueEnemigo)
 		tank.disparo()
-		bala.disparar()
-	
+		bala.disparar() //solo para que cree los eventos
+		balaEnemiga.disparar() //solo para que cree los eventos
 	}
 	
 	
@@ -129,6 +129,20 @@ describe "bloques" {
 		assert.equals(game.at(1,3), tank.position())
 	}
 	
+	test "LADRILLO se rompe al recibir disparo enemigo" {
+		ladrillo.fueImpactado(balaEnemiga)
+		assert.that(ladrillo.fueDestruido())	
+	}
+
+	test "BALA enemiga NO atraviesa el LADRILLO" {
+		ladrillo.fueImpactado(balaEnemiga) 
+		assert.notThat(ladrillo.dejaPasarBala())
+	}
+		
+	test "ACERO NO se rompe al recibir disparo enemigo" {
+		acero.fueImpactado(balaEnemiga)
+		assert.notThat(acero.fueDestruido())
+	}
 	
 //AGUILA
 	

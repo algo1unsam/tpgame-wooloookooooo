@@ -7,12 +7,24 @@ import escenas.*
 
 
 object config{
-	
+	var seEjecutoEnter = false //sirve para ejecutar enter 1 sola vez
 	method global(nivel) {
 	
+		game.addVisual(pantalladecarga)
+		keyboard.enter().onPressDo {
+			if(not seEjecutoEnter) self.ejecutar(nivel)
+		}
+	}
+	
+	method ejecutar(nivel){
+		seEjecutoEnter = true
+		if(game.hasVisual(pantalladecarga)){ 
+			game.removeVisual(pantalladecarga)
+		}
+		
 	//	TECLADO
 		self.teclado()	
-	
+
 	//	VISUALES
 		self.crearLimites()
 				
@@ -81,27 +93,54 @@ object config{
 	
 	 */
 }
-object musica{
-const property musica = game.sound("matatan.mp3")
-const property pium = game.sound("pium.mp3")
-const property ganar = game.sound("win.mp3")
-const property perder = game.sound("perder.mp3")
+object musica {
+
+	const property musica = game.sound("matatan.mp3")
+	const property pium = game.sound("pium.mp3")
+	const property ganar = game.sound("win.mp3")
+	const property perder = game.sound("perder.mp3")
 
 }
 
-object ganar{
-method position()= game.origin()
-method image()="ganaste.png" 
+object ganar {
+
+	method position() = game.origin()
+
+	method image() = "ganaste.png"
+
+	method colisionoConTank() {
+	}
+
 }
-object enter{
-method position()= game.at(16,10)
-method image()="enter.png" 
+
+object enter {
+
+	method position() = game.at(16, 10)
+
+	method image() = "enter.png"
+
+	method colisionoConTank() {
+	}
+
 }
-object presione{
-	method position()= game.at(4,10)
-method image()="presione.png" 
+
+object presione {
+
+	method position() = game.at(4, 10)
+
+	method image() = "presione.png"
+
+	method colisionoConTank() {
+	}
+
 }
-/*object pantalladecarga{
-method position()= game.origin()
-method image()="pantalladecarga.png"*/ 
- 
+
+object pantalladecarga {
+
+	method position() = game.origin()
+
+	method image() = "ganaste.png"
+
+	method colisionoConTank() {
+	}
+}

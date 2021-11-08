@@ -39,8 +39,8 @@ object tank inherits Tanque{
 
 	method fueImpactado (bala){
 		if(bala.esEnemiga()) {
-			config.gameOver()
 			bala.remover()
+			config.gameOver()
 		}
 	}
 	
