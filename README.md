@@ -20,8 +20,8 @@
 
 #Imagenes:
 	
-¡[tanqueAZUL](tanqueAzul.png)
-¡[juego](juego.png)
+	¡[tanqueAZUL](tanqueAzul.png)
+	¡[juego](juego.png)
 
 TP FINAL Algoritmos I (TPI, UNSAM)
 	
