@@ -75,10 +75,12 @@ object config{
 		game.addVisual(presioneenter)
 		
 		keyboard.enter().onPressDo { game.stop()}  
-		musica.perder().shouldLoop(false)	
-			musica.perder().play()
-			musica.perder().volume(0.2)  
-		//musica y acaba juego
+		musica.perder1().shouldLoop(false)	
+			musica.perder1().play()
+			musica.perder1().volume(0.6)  
+		musica.perder2().shouldLoop(false)	
+			musica.perder2().play()
+			musica.perder2().volume(0.1) 
 	}
 	
 	method win(){
@@ -87,20 +89,12 @@ object config{
 		game.addVisual(ganar)
 		keyboard.enter().onPressDo {game.stop()}
 		musica.ganar().shouldLoop(true)	
-			musica.ganar().play()
-			musica.ganar().volume(0.2)
+		musica.ganar().play()
+		musica.ganar().volume(0.2)
 		
 	}
 	
-	/* ACA DEJO EL SONIDO
- //	SONIDO
-	const music = game.sound("ufoInvasion.mp3")
-	music.shouldLoop(true)
-	keyboard.shift().onPressDo({music.pause()})
-	keyboard.control().onPressDo({music.resume()})
-	game.schedule(500, {music.play()})
-	
-	 */
+
 }
 object musica {
 
@@ -109,6 +103,9 @@ object musica {
 	const property ganar = game.sound("win.mp3")
 	const property perder = game.sound("perder.mp3")
 	const property inicio = game.sound("grieta.mp3")
+	const property perder1 = game.sound("ashe.mp3")
+	const property perder2 = game.sound("no.mp3")
+	
 
 }
 
