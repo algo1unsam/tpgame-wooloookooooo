@@ -41,7 +41,7 @@ object score{
 	method dejaPasarBala() = true
 	method seRompe() = false
 	
-	method colisionoConTank(){
+	method fueColosionadoPorTank(){
 		//vacio
 	}
 }

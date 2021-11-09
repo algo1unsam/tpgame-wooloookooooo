@@ -43,7 +43,7 @@ class Bala {
 		}
 	}
 	
-	method colisionoConTank(){
+	method fueColosionadoPorTank(){
 		
 	}
 	

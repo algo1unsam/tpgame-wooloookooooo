@@ -44,7 +44,7 @@ object config {
 	game.addVisual(aguila)
 	self.crearEnemigos()
 	
-	game.onCollideDo(tank, {algo => algo.colisionoConTank()}) //dice cuando gano
+	game.onCollideDo(tank, {algo => algo.fueColosionadoPorTank()}) //dice cuando gano
 		
 
 	}
@@ -116,7 +116,7 @@ object ganar {
 
 	method image() = "ganaste.png"
 
-	method colisionoConTank() {
+	method fueColosionadoPorTank() {
 	}
 
 }
@@ -127,7 +127,7 @@ object presioneenter {
 
 	method image() = "presioneenter.png"
 
-	method colisionoConTank() {
+	method fueColosionadoPorTank() {
 	}
 
 }
@@ -140,6 +140,6 @@ object pantallaDeCarga {
 
 	method image() = "pantalladecarga.png"
 
-	method colisionoConTank() {}
+	method fueColosionadoPorTank() {}
 
 }

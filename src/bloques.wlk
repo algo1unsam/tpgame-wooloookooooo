@@ -26,7 +26,7 @@ class Bloque{
 	
 	method dejaPasarTank() = false
 	
-	method colisionoConTank(){
+	method fueColosionadoPorTank(){
 		//vacio
 	}
 }
@@ -78,7 +78,7 @@ object aguila{
 		self.remover()
 	}
 	
-	method colisionoConTank(){
+	method fueColosionadoPorTank(){
 		config.win()
 	}
 	
