@@ -17,7 +17,7 @@ describe "bloques" {
 	const balaEnemiga = new Bala(quienDisparo = tanqueEnemigo, sentido = up, position = game.at(9,10))
 	
 	method initialize() {
-		creadorDeCosas.crear(ladrillo,1,0)
+		creadorDeCosas.crear(ladrillo,1,4)
 		creadorDeCosas.crear(acero,1,1)
 		creadorDeCosas.crear(agua,1,2)
 		creadorDeCosas.crear(arbusto,1,3)
@@ -64,16 +64,22 @@ describe "bloques" {
 	}
 	
 	test "LADRILLO NO deja pasar TANQUE" {
+		tank.position(game.at(0,4))
 		tank.mover(right)  
-		assert.notEquals(game.at(1,0), tank.position())
+		assert.equals(game.at(0,4), tank.position())
 	}
 	
+	/*
 	test "TANQUE puede pasar al romperse el LADRILLO" {
 		ladrillo.fueImpactado(bala)
 		assert.notThat(game.hasVisual(ladrillo))
+		//game.removeVisual(ladrillo)
+		tank.position(game.at(0,4))
 		tank.mover(right)
-		assert.equals(game.at(0,1), tank.position())	
+		assert.equals(game.at(1,4), tank.position())	
 	}
+	* /
+	*/
 
 	
 //ACERO	
@@ -97,7 +103,7 @@ describe "bloques" {
 		ladrillo.fueImpactado(bala)
 		tank.mover(up)
 		tank.mover(right)  
-		assert.notEquals(game.at(1,1), tank.position())	
+		assert.equals(game.at(0,1), tank.position())	
 	}
 	
 	
@@ -121,9 +127,11 @@ describe "bloques" {
 	
 	
 	test "AGUA NO deja pasar TANQUE" {
-		2.times{t => tank.mover(up)}
-		tank.mover(right)
-		assert.notEquals(game.at(1,2), tank.position())
+		//2.times{t => tank.mover(up)}
+		//tank.mover(right)
+		tank.position(game.at(0,2))
+		tank.mover(right) 
+		assert.equals(game.at(0,2), tank.position())
 	}
 	
 
@@ -147,7 +155,9 @@ describe "bloques" {
 	
 	test "ARBUSTO deja pasar TANQUE" {
 		assert.equals(game.at(0,0), tank.position()) 
-		3.times {t => tank.mover(up) } 
+		//3.times {t => tank.mover(up) } 
+		//tank.mover(right) 
+		tank.position(game.at(0,3))
 		tank.mover(right) 
 		assert.equals(game.at(1,3), tank.position())
 	}
