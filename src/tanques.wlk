@@ -9,11 +9,9 @@ class Tanque{
 	var property dondeMira = up
 	
 	method mover(donde){
-		if(donde.puedeMoverse(self)) {
-			self.position(donde.position(self))
+		if(donde.puedeMoverse(self)) self.position(donde.position(self))
 			self.image(donde.imagen(self)) 
 			self.dondeMira(donde)
-		}
 	}
 
 	method position(unaPosicion) //definido en el objeto
