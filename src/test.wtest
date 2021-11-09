@@ -151,7 +151,20 @@ describe "bloques" {
 		tank.mover(right) 
 		assert.equals(game.at(1,3), tank.position())
 	}
+
+//TANQUES
+	test "TANQUES ENEMIGOS desaparecen cuando son impactados por BALA" {
+		tanqueEnemigo.fueImpactado(bala)
+		assert.notThat(game.hasVisual(tanqueEnemigo))
+	}	
+
 	
+//BALA
+	test "BALAS desaparecen cuando impacta con BALA ENEMIGA" {
+		bala.fueImpactado(balaEnemiga)
+		assert.notThat(game.hasVisual(bala))
+		assert.notThat(game.hasVisual(balaEnemiga))
+	}	
 	
 //SCORE
 	test "SCORE aumenta cuando se matan enemigos" {

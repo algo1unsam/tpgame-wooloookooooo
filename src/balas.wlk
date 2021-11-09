@@ -17,7 +17,7 @@ class Bala {
 		game.removeTickEvent(self.nombreOnTick())//hacer un metodo del nombre
 	}
 	
-	method mover(){
+	method mover() {
 		self.position(sentido.position(self))
 	}
 	
@@ -38,8 +38,9 @@ class Bala {
 	method fueImpactado(bala){
 		if(not quienDisparo.esEnemiga() and not bala.quienDisparo().esEnemiga()){
 			
-		} else {
-			self.remover()
+		} else { //Remueve bala y balaEnemiga
+			self.remover() 
+			bala.remover() 
 		}
 	}
 	
