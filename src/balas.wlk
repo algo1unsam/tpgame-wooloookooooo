@@ -3,7 +3,6 @@ import tanques.*
 import config.*
 
 class Bala {
-	
 	const property quienDisparo
 	const property sentido
 	var property position
