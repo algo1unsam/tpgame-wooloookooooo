@@ -10,7 +10,8 @@ object config{
 	var seEjecutoEnter = false //sirve para ejecutar enter 1 sola vez
 	method global(nivel) {
 	
-		game.addVisual(pantalladecarga)
+		game.addVisual(PantallaDeCarga)
+		
 		keyboard.enter().onPressDo {
 			if(not seEjecutoEnter) self.ejecutar(nivel)
 		}
@@ -18,8 +19,14 @@ object config{
 	
 	method ejecutar(nivel){
 		seEjecutoEnter = true
-		if(game.hasVisual(pantalladecarga)){ 
-			game.removeVisual(pantalladecarga)
+		if(game.hasVisual(PantallaDeCarga)){ 
+			game.removeVisual(PantallaDeCarga)
+			musica.inicio().shouldLoop(false)	
+			musica.inicio().play()
+			musica.inicio().volume(0.2)
+			musica.musica().shouldLoop(true)	
+			musica.musica().play()
+			musica.musica().volume(0.2)
 		}
 		
 	//	TECLADO
@@ -62,18 +69,20 @@ object config{
 	}
 	
 	method gameOver(){
+		musica.musica().stop()
 		game.clear()
 		gameOver.crearMapa()
-		game.addVisual(enter)
-		game.addVisual(presione)
+		game.addVisual(presioneenter)
+		
 		keyboard.enter().onPressDo { game.stop()}  
-		musica.perder().shouldLoop(true)	
+		musica.perder().shouldLoop(false)	
 			musica.perder().play()
 			musica.perder().volume(0.2)  
 		//musica y acaba juego
 	}
 	
 	method win(){
+		musica.musica().stop()
 		game.clear()
 		game.addVisual(ganar)
 		keyboard.enter().onPressDo {game.stop()}
@@ -95,10 +104,11 @@ object config{
 }
 object musica {
 
-	const property musica = game.sound("matatan.mp3")
+	const property musica = game.sound("ticki.mp3")
 	const property pium = game.sound("pium.mp3")
 	const property ganar = game.sound("win.mp3")
 	const property perder = game.sound("perder.mp3")
+	const property inicio = game.sound("grieta.mp3")
 
 }
 
@@ -113,33 +123,24 @@ object ganar {
 
 }
 
-object enter {
+object presioneenter {
 
-	method position() = game.at(16, 10)
+	method position() = game.at(2, 9)
 
-	method image() = "enter.png"
-
-	method colisionoConTank() {
-	}
-
-}
-
-object presione {
-
-	method position() = game.at(4, 10)
-
-	method image() = "presione.png"
+	method image() = "presioneenter.png"
 
 	method colisionoConTank() {
 	}
 
 }
 
-object pantalladecarga {
+
+
+object PantallaDeCarga {
 
 	method position() = game.origin()
 
-	method image() = "ganaste.png"
+	method image() = "pantalladecarga.png"
 
 	method colisionoConTank() {
 	}
