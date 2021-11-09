@@ -1,8 +1,9 @@
 import wollok.game.*
 import tanques.*
+import config.*
 
 class Bala {
-	const property esEnemiga 
+	
 	const property quienDisparo
 	const property sentido
 	var property position
@@ -14,7 +15,6 @@ class Bala {
 	method remover() {
 		game.removeVisual(self)
 		game.removeTickEvent(self.nombreOnTick())//hacer un metodo del nombre
-		//agregar sonido
 	}
 	
 	method mover(){
@@ -36,7 +36,7 @@ class Bala {
 	method dejaPasarBala() = true
 	
 	method fueImpactado(bala){
-		if(not self.esEnemiga() and not bala.esEnemiga()){
+		if(not quienDisparo.esEnemiga() and not bala.quienDisparo().esEnemiga()){
 			
 		} else {
 			self.remover()

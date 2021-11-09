@@ -25,7 +25,7 @@ object nivel1 {
 		2.times({t => creadorDeCosas.crear(new Ladrillo(),t+18,2)})
 		3.times({t => creadorDeCosas.crear(new Ladrillo(),14,t+4)})
 		2.times({t => creadorDeCosas.crear(new Ladrillo(),0,t+17)})	
-		2.times({t => creadorDeCosas.crear(new Ladrillo(),t+3,19)})	
+		2.times({t => creadorDeCosas.crear(new Ladrillo(),t+3,19)})
 		creadorDeCosas.crear(new Ladrillo(),19,18)
 		creadorDeCosas.crear(new Ladrillo(),24,18)
 		creadorDeCosas.crear(new Ladrillo(),11,19)
@@ -97,10 +97,10 @@ object nivel1 {
 		2.times({t => creadorDeCosas.crear(new Acero(),t+17,15)})
 		3.times({t => creadorDeCosas.crear(new Acero(),t+1,14)})
 		2.times({t => creadorDeCosas.crear(new Acero(),18,t+12)})
+		2.times({t => creadorDeCosas.crear(new Acero(),9,t+9)})
 		creadorDeCosas.crear(new Acero(),21,14)
 		creadorDeCosas.crear(new Acero(),2,13)
 		creadorDeCosas.crear(new Acero(),6,12)
-		creadorDeCosas.crear(new Acero(),10,5)
 		creadorDeCosas.crear(new Acero(),18,6)
 		creadorDeCosas.crear(new Acero(),6,4)
 		creadorDeCosas.crear(new Acero(),2,3)
@@ -127,7 +127,7 @@ object nivel1 {
 }
 
 //GAME OVER
-object gameOver {
+object perdio {
 	
 	method crearMapa() {
 		5.times( { t => creadorDeCosas.crear(new Ladrillo(),1,t+1) } )

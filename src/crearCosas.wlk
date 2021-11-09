@@ -29,14 +29,10 @@ object creadorDeCosas{
 
 object score{
 	method position() = game.at(23,19)
-	method text() = "score: " +tank.scoreAsesinados().toString()
+	method text() = "SCORE: " +tank.scoreAsesinados().toString()
 	
 	method textColor() = "FFFFFF"
-	/*
-	method fueImpactadoPorEnemigo(bala){
-		//nada 
-	}*/
-	
+
 	method fueImpactado(bala){
 		//nada 
 	}

@@ -2,13 +2,12 @@ import wollok.game.*
 import config.*
 
 class Bloque{
-	var property position = game.origin() //no importa la posicion pq se modifica cuando se intancia
-	var property fueDestruido = false
+	var property position = game.origin() //no importa la posicion pq se modifica cuando se instancia
+
 	
 	method fueImpactado(bala){
 		if(not self.dejaPasarBala()){
 			if(self.seRompe()){
-				self.setFueDestruido()			
 				bala.remover()
 				self.remover()
 			} else {
@@ -17,13 +16,8 @@ class Bloque{
 		}
 	}
 	
-	method setFueDestruido() {
-		fueDestruido = true	
-	}
-	
 	method remover() {
 		game.removeVisual(self)
-		//agregar sonido
 	}
 	
 	method seRompe()

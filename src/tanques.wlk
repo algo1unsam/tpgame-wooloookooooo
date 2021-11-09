@@ -24,6 +24,7 @@ class Tanque{
 	
 	method remover() {game.removeVisual(self)}
 	
+	method esEnemiga() = true
 }
 
 object tank inherits Tanque{
@@ -32,13 +33,15 @@ object tank inherits Tanque{
 	var property image = "tankUp.png"
 	var property position = game.origin()
 	
+	
+	
 	method disparo(){
-		const bala = new Bala(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self, esEnemiga = false)
+		const bala = new Bala(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self)
 		bala.disparar()
 	}
 
 	method fueImpactado (bala){
-		if(bala.esEnemiga()) {
+		if(bala.quienDisparo().esEnemiga()) {
 			bala.remover()
 			config.gameOver()
 		}
@@ -65,7 +68,7 @@ class TankEnemigo inherits Tanque{
 	}
 	
 	method disparo(){
-		const bala = new Bala(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self, esEnemiga = true)
+		const bala = new Bala(sentido = self.dondeMira(), position = self.dondeMira().position(self), quienDisparo = self)
 		bala.disparar()
 	}
 

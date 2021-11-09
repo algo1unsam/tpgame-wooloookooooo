@@ -6,11 +6,13 @@ import movimientos.*
 import escenas.*
 
 
-object config{
+object config {
+
 	var seEjecutoEnter = false //sirve para ejecutar enter 1 sola vez
+
 	method global(nivel) {
 	
-		game.addVisual(PantallaDeCarga)
+		game.addVisual(pantallaDeCarga)
 		
 		keyboard.enter().onPressDo {
 			if(not seEjecutoEnter) self.ejecutar(nivel)
@@ -19,30 +21,30 @@ object config{
 	
 	method ejecutar(nivel){
 		seEjecutoEnter = true
-		if(game.hasVisual(PantallaDeCarga)){ 
-			game.removeVisual(PantallaDeCarga)
+		if(game.hasVisual(pantallaDeCarga)){ 
+			game.removeVisual(pantallaDeCarga)
 			musica.inicio().shouldLoop(false)	
 			musica.inicio().play()
 			musica.inicio().volume(0.2)
 			musica.musica().shouldLoop(true)	
 			musica.musica().play()
 			musica.musica().volume(0.2)
-		}
+	}
 		
 	//	TECLADO
-		self.teclado()	
+	self.teclado()	
 
 	//	VISUALES
-		self.crearLimites()
+	self.crearLimites()
 				
-		nivel.crearMapa()
+	nivel.crearMapa()
 		
-		game.addVisual(score)
-		game.addVisual(tank)
-		game.addVisual(aguila)
-		self.crearEnemigos()
+	game.addVisual(score)
+	game.addVisual(tank)
+	game.addVisual(aguila)
+	self.crearEnemigos()
 	
-		game.onCollideDo(tank, {algo => algo.colisionoConTank()}) //dice cuando gano
+	game.onCollideDo(tank, {algo => algo.colisionoConTank()}) //dice cuando gano
 		
 
 	}
@@ -65,25 +67,25 @@ object config{
 	}
 
 	method crearEnemigos() {
-			game.onTick(5000, "tanques", {creadorDeCosas.crearTankEnemigo()})
+		game.onTick(5000, "tanques", {creadorDeCosas.crearTankEnemigo()})
 	}
 	
 	method gameOver(){
 		musica.musica().stop()
 		game.clear()
-		gameOver.crearMapa()
+		perdio.crearMapa()
 		game.addVisual(presioneenter)
 		
 		keyboard.enter().onPressDo { game.stop()}  
 		musica.perder1().shouldLoop(false)	
-			musica.perder1().play()
-			musica.perder1().volume(0.6)  
+		musica.perder1().play()
+		musica.perder1().volume(0.6)  
 		musica.perder2().shouldLoop(false)	
-			musica.perder2().play()
-			musica.perder2().volume(0.1) 
+		musica.perder2().play()
+		musica.perder2().volume(0.1) 
 	}
 	
-	method win(){
+	method win() {
 		musica.musica().stop()
 		game.clear()
 		game.addVisual(ganar)
@@ -99,7 +101,6 @@ object config{
 object musica {
 
 	const property musica = game.sound("ticki.mp3")
-	const property pium = game.sound("pium.mp3")
 	const property ganar = game.sound("win.mp3")
 	const property perder = game.sound("perder.mp3")
 	const property inicio = game.sound("grieta.mp3")
@@ -133,12 +134,12 @@ object presioneenter {
 
 
 
-object PantallaDeCarga {
+object pantallaDeCarga {
 
 	method position() = game.origin()
 
 	method image() = "pantalladecarga.png"
 
-	method colisionoConTank() {
-	}
+	method colisionoConTank() {}
+
 }
