@@ -22,7 +22,7 @@ class Bala {
 	
 	method disparar() {
 		game.addVisual(self)
-		game.onTick(200, self.nombreOnTick(), { self.mover() })
+		game.onTick(100, self.nombreOnTick(), { self.mover() })
 		self.impacto()
 	}
 	
@@ -37,7 +37,7 @@ class Bala {
 	method fueImpactado(bala){
 		if(not quienDisparo.esEnemiga() and not bala.quienDisparo().esEnemiga()){
 			
-		} else { //Remueve bala y balaEnemiga
+		} else { //Remueve bala y balaEnemiga cuando chocan
 			self.remover() 
 			bala.remover() 
 		}
